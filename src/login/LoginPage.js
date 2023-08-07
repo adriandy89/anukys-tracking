@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import {
@@ -46,7 +47,7 @@ const LoginPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useTheme();
+  // const theme = useTheme();
   const t = useTranslation();
 
   const { languages, language, setLanguage } = useLocalization();
@@ -153,7 +154,7 @@ const LoginPage = () => {
         )}
       </div>
       <div className={classes.container}>
-        {useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.primary.main} />}
+        {/* {useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.primary.main} />} */}
         <TextField
           required
           error={failed}
@@ -197,6 +198,7 @@ const LoginPage = () => {
           </Button>
         )}
         <div className={classes.extraContainer}>
+          {registrationEnabled && (
           <Button
             className={classes.registerButton}
             onClick={() => navigate('/register')}
@@ -205,6 +207,7 @@ const LoginPage = () => {
           >
             {t('loginRegister')}
           </Button>
+          )}
           {languageEnabled && (
             <FormControl fullWidth>
               <InputLabel>{t('loginLanguage')}</InputLabel>

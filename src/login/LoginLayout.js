@@ -1,27 +1,39 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { useMediaQuery, Paper } from '@mui/material';
+import { Card, Grid, Paper } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { useTheme } from '@mui/material/styles';
 import LogoImage from './LogoImage';
+import image from '../img/login-background.svg';
+import image2 from '../img/login.jpg';
+import AuthFooter from './AuthFooter';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     height: '100%',
   },
+  card: {
+    width: theme.dimensions.sidebarWidth,
+    [theme.breakpoints.down('md')]: {
+      width: '90%',
+    },
+    borderRadius: 10,
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: 460,
+  },
   sidebar: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     background: theme.palette.primary.main,
-    paddingBottom: theme.spacing(5),
-    width: theme.dimensions.sidebarWidth,
-    [theme.breakpoints.down('lg')]: {
-      width: theme.dimensions.sidebarWidthTablet,
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: '0px',
-    },
+    padding: theme.spacing(3),
+    width: '100%',
+    maxWidth: 460,
   },
   paper: {
     display: 'flex',
@@ -31,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     boxShadow: '-2px 0px 16px rgba(0, 0, 0, 0.25)',
     [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(0, 25, 0, 0),
+      padding: theme.spacing(0, 0, 0, 0),
     },
   },
   form: {
@@ -46,16 +58,30 @@ const LoginLayout = ({ children }) => {
   const theme = useTheme();
 
   return (
-    <main className={classes.root}>
-      <div className={classes.sidebar}>
-        {!useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.secondary.contrastText} />}
-      </div>
-      <Paper className={classes.paper}>
-        <form className={classes.form}>
-          {children}
-        </form>
-      </Paper>
-    </main>
+    <>
+      <main className={classes.root}>
+        <Paper
+          className={classes.paper}
+          style={{
+            backgroundImage: `url(${image2})`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+          }}
+        >
+          <Card className={classes.card} elevation={12}>
+            <div className={classes.sidebar}>
+              <LogoImage color={theme.palette.primary.main} />
+            </div>
+            <br />
+            <form className={classes.form}>{children}</form>
+          </Card>
+
+        </Paper>
+      </main>
+      <AuthFooter />
+
+    </>
   );
 };
 
