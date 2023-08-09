@@ -6,6 +6,7 @@ import { makeStyles } from '@mui/styles';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
+import { indigo } from '@mui/material/colors';
 import DeviceList from './DeviceList';
 import BottomMenu from '../common/components/BottomMenu';
 import StatusCard from '../common/components/StatusCard';
@@ -16,6 +17,7 @@ import useFilter from './useFilter';
 import MainToolbar from './MainToolbar';
 import MainMap from './MainMap';
 import { useAttributePreference } from '../common/util/preferences';
+import InfoBottom from '../common/components/InfoBottom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -139,10 +141,15 @@ const MainPage = () => {
               />
             </div>
           )}
-          <Paper square className={classes.contentList} style={devicesOpen ? {} : { visibility: 'hidden' }}>
+          <Paper square className={classes.contentList} style={devicesOpen ? { border: `1px solid ${indigo[500]}` } : { visibility: 'hidden' }}>
             <DeviceList devices={filteredDevices} />
           </Paper>
         </div>
+        {desktop && (
+        <div className={classes.footer}>
+          <InfoBottom />
+        </div>
+        )}
       </div>
       <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} />
       {selectedDeviceId && (

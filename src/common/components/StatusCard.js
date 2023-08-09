@@ -24,7 +24,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PendingIcon from '@mui/icons-material/Pending';
 
-import { indigo } from '@mui/material/colors';
+import { grey, indigo } from '@mui/material/colors';
 import { useTranslation } from './LocalizationProvider';
 import RemoveDialog from './RemoveDialog';
 import PositionValue from './PositionValue';
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     pointerEvents: 'auto',
     width: theme.dimensions.popupMaxWidth,
-    backgroundColor: indigo[50],
+    backgroundColor: grey[50],
   },
   media: {
     height: theme.dimensions.popupImageHeight,
@@ -183,14 +183,14 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
           >
             <Card elevation={12} className={classes.card}>
               <div className={classes.header}>
-                <Typography variant="button" color="Highlight">
+                <Typography variant="button" color="#f2f2f2">
                   {device.name}
                 </Typography>
                 <IconButton
                   size="small"
                   onClick={onClose}
                   onTouchStart={onClose}
-                  style={{ color: 'Highlight' }}
+                  style={{ color: '#f2f2f2' }}
                 >
                   <CloseIcon fontSize="small" />
                 </IconButton>
