@@ -24,6 +24,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PendingIcon from '@mui/icons-material/Pending';
 
+import { indigo } from '@mui/material/colors';
 import { useTranslation } from './LocalizationProvider';
 import RemoveDialog from './RemoveDialog';
 import PositionValue from './PositionValue';
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     pointerEvents: 'auto',
     width: theme.dimensions.popupMaxWidth,
+    backgroundColor: indigo[50],
   },
   media: {
     height: theme.dimensions.popupImageHeight,
@@ -52,13 +54,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: theme.spacing(1, 1, 0, 2),
+    padding: theme.spacing(1, 1, 1, 3),
+    backgroundColor: indigo[500],
   },
   content: {
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
     maxHeight: theme.dimensions.cardContentMaxHeight,
-    overflow: 'scroll',
+    overflow: 'auto',
+    height: '210px',
   },
   negative: {
     color: theme.palette.colors.negative,
@@ -79,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
   actions: {
     justifyContent: 'space-between',
+    backgroundColor: indigo[100],
   },
   root: ({ desktopPadding }) => ({
     pointerEvents: 'none',
@@ -176,33 +181,25 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
           <Draggable
             handle={`.${classes.media}, .${classes.header}`}
           >
-            <Card elevation={3} className={classes.card}>
-              {deviceImage ? (
+            <Card elevation={12} className={classes.card}>
+              <div className={classes.header}>
+                <Typography variant="button" color="Highlight">
+                  {device.name}
+                </Typography>
+                <IconButton
+                  size="small"
+                  onClick={onClose}
+                  onTouchStart={onClose}
+                  style={{ color: 'Highlight' }}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </div>
+              {deviceImage && (
                 <CardMedia
                   className={classes.media}
                   image={`/api/media/${device.uniqueId}/${deviceImage}`}
-                >
-                  <IconButton
-                    size="small"
-                    onClick={onClose}
-                    onTouchStart={onClose}
-                  >
-                    <CloseIcon fontSize="small" className={classes.mediaButton} />
-                  </IconButton>
-                </CardMedia>
-              ) : (
-                <div className={classes.header}>
-                  <Typography variant="body2" color="textSecondary">
-                    {device.name}
-                  </Typography>
-                  <IconButton
-                    size="small"
-                    onClick={onClose}
-                    onTouchStart={onClose}
-                  >
-                    <CloseIcon fontSize="small" />
-                  </IconButton>
-                </div>
+                />
               )}
               {position && (
                 <CardContent className={classes.content}>

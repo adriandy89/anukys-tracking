@@ -109,6 +109,11 @@ const MainPage = () => {
         />
       )}
       <div className={classes.sidebar}>
+        {desktop && (
+        <div className={classes.footer}>
+          <BottomMenu />
+        </div>
+        )}
         <Paper square elevation={3} className={classes.header}>
           <MainToolbar
             filteredDevices={filteredDevices}
@@ -138,11 +143,6 @@ const MainPage = () => {
             <DeviceList devices={filteredDevices} />
           </Paper>
         </div>
-        {desktop && (
-          <div className={classes.footer}>
-            <BottomMenu />
-          </div>
-        )}
       </div>
       <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} />
       {selectedDeviceId && (

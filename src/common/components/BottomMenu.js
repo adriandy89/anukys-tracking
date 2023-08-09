@@ -11,6 +11,7 @@ import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
+import { indigo } from '@mui/material/colors';
 import { sessionActions } from '../../store';
 import { useTranslation } from './LocalizationProvider';
 import { useRestriction } from '../util/permissions';
@@ -100,9 +101,10 @@ const BottomMenu = () => {
 
   return (
     <Paper square elevation={3}>
-      <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels>
+      <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels style={{ backgroundColor: indigo[500] }}>
         <BottomNavigationAction
           label={t('mapTitle')}
+          style={{ color: indigo[50] }}
           icon={(
             <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
               <MapIcon />
@@ -111,13 +113,33 @@ const BottomMenu = () => {
           value="map"
         />
         {!disableReports && (
-          <BottomNavigationAction label={t('reportTitle')} icon={<DescriptionIcon />} value="reports" />
+          <BottomNavigationAction
+            label={t('reportTitle')}
+            icon={<DescriptionIcon />}
+            value="reports"
+            style={{ color: indigo[50] }}
+          />
         )}
-        <BottomNavigationAction label={t('settingsTitle')} icon={<SettingsIcon />} value="settings" />
+        <BottomNavigationAction
+          label={t('settingsTitle')}
+          icon={<SettingsIcon />}
+          value="settings"
+          style={{ color: indigo[50] }}
+        />
         {readonly ? (
-          <BottomNavigationAction label={t('loginLogout')} icon={<ExitToAppIcon />} value="logout" />
+          <BottomNavigationAction
+            label={t('loginLogout')}
+            icon={<ExitToAppIcon />}
+            value="logout"
+            style={{ color: indigo[50] }}
+          />
         ) : (
-          <BottomNavigationAction label={t('settingsUser')} icon={<PersonIcon />} value="account" />
+          <BottomNavigationAction
+            label={t('settingsUser')}
+            icon={<PersonIcon />}
+            value="account"
+            style={{ color: indigo[50] }}
+          />
         )}
       </BottomNavigation>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
