@@ -4,21 +4,21 @@ import { Card, Grid, Paper } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { useTheme } from '@mui/material/styles';
 import LogoImage from './LogoImage';
-import image from '../img/login-background.svg';
-import image2 from '../img/login.jpg';
+import image from '../resources/images/login.jpg';
 import AuthFooter from './AuthFooter';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     height: '100%',
+    flexDirection: 'column',
   },
   card: {
     width: theme.dimensions.sidebarWidth,
     [theme.breakpoints.down('md')]: {
       width: '90%',
     },
-    borderRadius: 10,
+    borderRadius: 12,
     margin: '0 auto',
     display: 'flex',
     flexDirection: 'column',
@@ -58,30 +58,27 @@ const LoginLayout = ({ children }) => {
   const theme = useTheme();
 
   return (
-    <>
-      <main className={classes.root}>
-        <Paper
-          className={classes.paper}
-          style={{
-            backgroundImage: `url(${image2})`,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-          }}
-        >
-          <Card className={classes.card} elevation={12}>
-            <div className={classes.sidebar}>
-              <LogoImage color={theme.palette.primary.main} />
-            </div>
-            <br />
-            <form className={classes.form}>{children}</form>
-          </Card>
+    <main className={classes.root}>
+      <Paper
+        className={classes.paper}
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+      >
+        <Card className={classes.card} elevation={24}>
+          <div className={classes.sidebar}>
+            <LogoImage color={theme.palette.primary.main} />
+          </div>
+          <br />
+          <form className={classes.form}>{children}</form>
+        </Card>
 
-        </Paper>
-      </main>
+      </Paper>
       <AuthFooter />
-
-    </>
+    </main>
   );
 };
 
