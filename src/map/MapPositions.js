@@ -2,6 +2,9 @@ import { useId, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/styles';
+import {
+  amber, grey, lightBlue, pink,
+} from '@mui/material/colors';
 import { map } from './core/MapView';
 import { formatTime, getStatusColor } from '../common/util/formatter';
 import { mapIconKey } from './core/preloadImages';
@@ -105,23 +108,49 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         'text-field': `{${titleField || 'name'}}`,
         'text-allow-overlap': true,
         'text-anchor': 'bottom',
-        'text-offset': [0, -2 * iconScale],
+        'text-offset': [0, -1.6 * iconScale],
         'text-font': findFonts(map),
-        'text-size': 12,
+        'text-size': 14,
       },
       paint: {
-        'text-halo-color': 'white',
-        'text-halo-width': 1,
+        'text-color': grey[900],
+        'text-halo-color': grey[100],
+        'text-halo-width': 3,
+        'text-halo-blur': 1,
       },
     });
     map.addLayer({
       id: clusters,
+      type: 'circle',
+      source: id,
+      filter: ['has', 'point_count'],
+      paint: {
+        'circle-color': [
+          'step',
+          ['get', 'point_count'],
+          lightBlue[200],
+          50,
+          amber[300],
+          500,
+          pink[200],
+        ],
+        'circle-radius': [
+          'step',
+          ['get', 'point_count'],
+          25,
+          100,
+          28,
+          500,
+          32,
+        ],
+      },
+    });
+    map.addLayer({
+      id: `${clusters}-count`,
       type: 'symbol',
       source: id,
       filter: ['has', 'point_count'],
       layout: {
-        'icon-image': 'background',
-        'icon-size': iconScale,
         'text-field': '{point_count_abbreviated}',
         'text-font': findFonts(map),
         'text-size': 14,

@@ -7,6 +7,7 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router-dom';
+import { grey, indigo } from '@mui/material/colors';
 import { useEffectAsync } from '../reactHelper';
 import { prefixString } from '../common/util/stringUtils';
 import { useTranslation } from '../common/components/LocalizationProvider';
@@ -61,9 +62,9 @@ const PositionPage = () => {
   return (
     <div className={classes.root}>
       <AppBar position="sticky" color="inherit">
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
           <IconButton color="inherit" edge="start" sx={{ mr: 2 }} onClick={() => navigate(-1)}>
-            <ArrowBackIcon />
+            <ArrowBackIcon style={{ color: grey[50] }} />
           </IconButton>
           <Typography variant="h6">
             {deviceName}

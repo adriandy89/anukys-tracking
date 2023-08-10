@@ -9,6 +9,7 @@ import Drawer from '@mui/material/Drawer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useNavigate } from 'react-router-dom';
+import { grey, indigo } from '@mui/material/colors';
 import MapView from '../map/core/MapView';
 import MapCurrentLocation from '../map/MapCurrentLocation';
 import MapGeofenceEdit from '../map/draw/MapGeofenceEdit';
@@ -109,15 +110,15 @@ const GeofencesPage = () => {
           variant="permanent"
           classes={{ paper: classes.drawerPaper }}
         >
-          <Toolbar>
+          <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
             <IconButton edge="start" sx={{ mr: 2 }} onClick={() => navigate(-1)}>
-              <ArrowBackIcon />
+              <ArrowBackIcon style={{ color: grey[50] }} />
             </IconButton>
             <Typography variant="h6" className={classes.title}>{t('sharedGeofences')}</Typography>
             <label htmlFor="upload-gpx">
               <input accept=".gpx" id="upload-gpx" type="file" className={classes.fileInput} onChange={handleFile} />
               <IconButton edge="end" component="span" onClick={() => {}}>
-                <UploadFileIcon />
+                <UploadFileIcon style={{ color: grey[50] }} />
               </IconButton>
             </label>
           </Toolbar>

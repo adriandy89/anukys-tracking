@@ -13,6 +13,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import RouteIcon from '@mui/icons-material/Route';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { Link, useLocation } from 'react-router-dom';
+import { grey } from '@mui/material/colors';
 import { useTranslation } from '../../common/components/LocalizationProvider';
 import { useAdministrator, useRestriction } from '../../common/util/permissions';
 
@@ -20,7 +21,7 @@ const MenuItem = ({
   title, link, icon, selected,
 }) => (
   <ListItemButton key={link} component={Link} to={link} selected={selected}>
-    <ListItemIcon>{icon}</ListItemIcon>
+    <ListItemIcon style={{ color: grey[50] }}>{icon}</ListItemIcon>
     <ListItemText primary={title} />
   </ListItemButton>
 );

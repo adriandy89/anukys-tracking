@@ -6,6 +6,7 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router-dom';
+import { grey, indigo } from '@mui/material/colors';
 import { useEffectAsync } from '../reactHelper';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import MapView from '../map/core/MapView';
@@ -79,9 +80,9 @@ const EventPage = () => {
   return (
     <div className={classes.root}>
       <AppBar color="inherit" position="static" className={classes.toolbar}>
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
           <IconButton color="inherit" edge="start" sx={{ mr: 2 }} onClick={() => navigate('/')}>
-            <ArrowBackIcon />
+            <ArrowBackIcon style={{ color: grey[50] }} />
           </IconButton>
           <Typography variant="h6">{event && formatType(event)}</Typography>
         </Toolbar>

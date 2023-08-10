@@ -14,6 +14,7 @@ import FastForwardIcon from '@mui/icons-material/FastForward';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { grey, indigo } from '@mui/material/colors';
 import MapView from '../map/core/MapView';
 import MapRoutePath from '../map/MapRoutePath';
 import MapRoutePoints from '../map/MapRoutePoints';
@@ -170,18 +171,18 @@ const ReplayPage = () => {
       <MapCamera positions={positions} />
       <div className={classes.sidebar}>
         <Paper elevation={3} square>
-          <Toolbar>
+          <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
             <IconButton edge="start" sx={{ mr: 2 }} onClick={() => navigate(-1)}>
-              <ArrowBackIcon />
+              <ArrowBackIcon style={{ color: grey[50] }} />
             </IconButton>
             <Typography variant="h6" className={classes.title}>{t('reportReplay')}</Typography>
             {!expanded && (
               <>
                 <IconButton onClick={handleDownload}>
-                  <DownloadIcon />
+                  <DownloadIcon style={{ color: grey[50] }} />
                 </IconButton>
                 <IconButton edge="end" onClick={() => setExpanded(true)}>
-                  <TuneIcon />
+                  <TuneIcon style={{ color: grey[50] }} />
                 </IconButton>
               </>
             )}
