@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Divider, List, ListItemButton, ListItemIcon, ListItemText,
+  Divider, List, ListItemButton, ListItemIcon, ListItemText, useTheme,
 } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CreateIcon from '@mui/icons-material/Create';
@@ -15,7 +15,6 @@ import PublishIcon from '@mui/icons-material/Publish';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { grey } from '@mui/material/colors';
 import { useTranslation } from '../../common/components/LocalizationProvider';
 import {
   useAdministrator, useManager, useRestriction,
@@ -24,12 +23,15 @@ import useFeatures from '../../common/util/useFeatures';
 
 const MenuItem = ({
   title, link, icon, selected,
-}) => (
-  <ListItemButton key={link} component={Link} to={link} selected={selected}>
-    <ListItemIcon style={{ color: grey[50] }}>{icon}</ListItemIcon>
-    <ListItemText primary={title} />
-  </ListItemButton>
-);
+}) => {
+  const theme = useTheme();
+  return (
+    <ListItemButton key={link} component={Link} to={link} selected={selected}>
+      <ListItemIcon style={{ color: theme.palette.primary.contrastText }}>{icon}</ListItemIcon>
+      <ListItemText primary={title} />
+    </ListItemButton>
+  );
+};
 
 const SettingsMenu = () => {
   const t = useTranslation();

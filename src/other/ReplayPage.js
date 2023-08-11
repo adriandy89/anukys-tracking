@@ -2,7 +2,7 @@ import React, {
   useState, useEffect, useRef, useCallback,
 } from 'react';
 import {
-  IconButton, Paper, Slider, Toolbar, Typography,
+  IconButton, Paper, Slider, Toolbar, Typography, useTheme,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -14,7 +14,6 @@ import FastForwardIcon from '@mui/icons-material/FastForward';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { grey, indigo } from '@mui/material/colors';
 import MapView from '../map/core/MapView';
 import MapRoutePath from '../map/MapRoutePath';
 import MapRoutePoints from '../map/MapRoutePoints';
@@ -80,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 const ReplayPage = () => {
   const t = useTranslation();
   const classes = useStyles();
+  const theme = useTheme();
   const navigate = useNavigate();
   const timerRef = useRef();
 
@@ -171,18 +171,18 @@ const ReplayPage = () => {
       <MapCamera positions={positions} />
       <div className={classes.sidebar}>
         <Paper elevation={3} square>
-          <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
+          <Toolbar style={{ backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText }}>
             <IconButton edge="start" sx={{ mr: 2 }} onClick={() => navigate(-1)}>
-              <ArrowBackIcon style={{ color: grey[50] }} />
+              <ArrowBackIcon style={{ color: theme.palette.primary.contrastText }} />
             </IconButton>
             <Typography variant="h6" className={classes.title}>{t('reportReplay')}</Typography>
             {!expanded && (
               <>
                 <IconButton onClick={handleDownload}>
-                  <DownloadIcon style={{ color: grey[50] }} />
+                  <DownloadIcon style={{ color: theme.palette.primary.contrastText }} />
                 </IconButton>
                 <IconButton edge="end" onClick={() => setExpanded(true)}>
-                  <TuneIcon style={{ color: grey[50] }} />
+                  <TuneIcon style={{ color: theme.palette.primary.contrastText }} />
                 </IconButton>
               </>
             )}

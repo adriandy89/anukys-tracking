@@ -197,6 +197,9 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       if (map.getLayer(clusters)) {
         map.removeLayer(clusters);
       }
+      if (map.getLayer(`${clusters}-count`)) {
+        map.removeLayer(`${clusters}-count`);
+      }
       if (map.getLayer(direction)) {
         map.removeLayer(direction);
       }

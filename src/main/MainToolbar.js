@@ -9,7 +9,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocationOffIcon from '@mui/icons-material/LocationOff';
 import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
-import { indigo } from '@mui/material/colors';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import { useDeviceReadonly } from '../common/util/permissions';
 import DeviceRow from './DeviceRow';
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     gap: theme.spacing(1),
-    backgroundColor: indigo[500],
+    backgroundColor: theme.palette.primary.main,
   },
   filterPanel: {
     display: 'flex',
@@ -28,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: theme.dimensions.drawerWidthTablet,
   },
   iconButton: {
-    color: indigo[50],
+    color: theme.palette.primary.contrastText,
   },
 }));
 

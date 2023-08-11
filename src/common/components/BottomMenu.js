@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
-  Paper, BottomNavigation, BottomNavigationAction, Menu, MenuItem, Typography, Badge,
+  Paper, BottomNavigation, BottomNavigationAction, Menu, MenuItem, Typography, Badge, useTheme,
 } from '@mui/material';
 
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -11,13 +11,13 @@ import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-import { indigo } from '@mui/material/colors';
 import { sessionActions } from '../../store';
 import { useTranslation } from './LocalizationProvider';
 import { useRestriction } from '../util/permissions';
 import { nativePostMessage } from './NativeInterface';
 
 const BottomMenu = () => {
+  const theme = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -101,10 +101,10 @@ const BottomMenu = () => {
 
   return (
     <Paper square elevation={3}>
-      <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels style={{ backgroundColor: indigo[500] }}>
+      <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels style={{ backgroundColor: theme.palette.primary.main }}>
         <BottomNavigationAction
           label={t('mapTitle')}
-          style={{ color: indigo[50] }}
+          style={{ color: theme.palette.primary.contrastText }}
           icon={(
             <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
               <MapIcon />
@@ -117,28 +117,28 @@ const BottomMenu = () => {
             label={t('reportTitle')}
             icon={<DescriptionIcon />}
             value="reports"
-            style={{ color: indigo[50] }}
+            style={{ color: theme.palette.primary.contrastText }}
           />
         )}
         <BottomNavigationAction
           label={t('settingsTitle')}
           icon={<SettingsIcon />}
           value="settings"
-          style={{ color: indigo[50] }}
+          style={{ color: theme.palette.primary.contrastText }}
         />
         {readonly ? (
           <BottomNavigationAction
             label={t('loginLogout')}
             icon={<ExitToAppIcon />}
             value="logout"
-            style={{ color: indigo[50] }}
+            style={{ color: theme.palette.primary.contrastText }}
           />
         ) : (
           <BottomNavigationAction
             label={t('settingsUser')}
             icon={<PersonIcon />}
             value="account"
-            style={{ color: indigo[50] }}
+            style={{ color: theme.palette.primary.contrastText }}
           />
         )}
       </BottomNavigation>

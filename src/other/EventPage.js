@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react';
 
 import {
-  Typography, AppBar, Toolbar, IconButton,
+  Typography, AppBar, Toolbar, IconButton, useTheme,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router-dom';
-import { grey, indigo } from '@mui/material/colors';
 import { useEffectAsync } from '../reactHelper';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import MapView from '../map/core/MapView';
@@ -32,6 +31,7 @@ const useStyles = makeStyles(() => ({
 
 const EventPage = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const navigate = useNavigate();
   const t = useTranslation();
 
@@ -80,9 +80,9 @@ const EventPage = () => {
   return (
     <div className={classes.root}>
       <AppBar color="inherit" position="static" className={classes.toolbar}>
-        <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
+        <Toolbar style={{ backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText }}>
           <IconButton color="inherit" edge="start" sx={{ mr: 2 }} onClick={() => navigate('/')}>
-            <ArrowBackIcon style={{ color: grey[50] }} />
+            <ArrowBackIcon style={{ color: theme.palette.primary.contrastText }} />
           </IconButton>
           <Typography variant="h6">{event && formatType(event)}</Typography>
         </Toolbar>

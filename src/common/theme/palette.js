@@ -8,8 +8,8 @@ export default (server) => {
   const colors = {
     white: common.white,
     background: grey[50],
-    primary: validatedColor(server?.attributes?.colorPrimary) || indigo[900],
-    secondary: validatedColor(server?.attributes?.colorSecondary) || green[800],
+    primary: validatedColor(server?.attributes?.colorPrimary) || indigo[600],
+    secondary: validatedColor(server?.attributes?.colorSecondary) || green[700],
     positive: green[500],
     medium: amber[700],
     negative: red[500],

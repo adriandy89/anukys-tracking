@@ -14,7 +14,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
-import { grey, indigo } from '@mui/material/colors';
 import { useTranslation } from './LocalizationProvider';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
   },
   desktopDrawer: {
     width: theme.dimensions.drawerWidthDesktop,
-    backgroundColor: indigo[500],
-    color: grey[50],
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
   },
   mobileDrawer: {
     width: theme.dimensions.drawerWidthTablet,
-    backgroundColor: indigo[500],
-    color: grey[50],
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
   },
   mobileToolbar: {
     zIndex: 1,
@@ -57,15 +56,15 @@ const PageTitle = ({ breadcrumbs }) => {
 
   if (desktop) {
     return (
-      <Typography style={{ color: grey[50] }} variant="h6" noWrap>{t(breadcrumbs[0])}</Typography>
+      <Typography style={{ color: theme.palette.primary.contrastText }} variant="h6" noWrap>{t(breadcrumbs[0])}</Typography>
     );
   }
   return (
-    <Breadcrumbs style={{ color: grey[50] }}>
+    <Breadcrumbs style={{ color: theme.palette.primary.contrastText }}>
       {breadcrumbs.slice(0, -1).map((breadcrumb) => (
-        <Typography style={{ color: grey[300] }} variant="h6" key={breadcrumb}>{t(breadcrumb)}</Typography>
+        <Typography style={{ color: theme.palette.primary.contrastText }} variant="h6" key={breadcrumb}>{t(breadcrumb)}</Typography>
       ))}
-      <Typography style={{ color: grey[50] }} variant="h6">{t(breadcrumbs[breadcrumbs.length - 1])}</Typography>
+      <Typography style={{ color: theme.palette.primary.contrastText }} variant="h6">{t(breadcrumbs[breadcrumbs.length - 1])}</Typography>
     </Breadcrumbs>
   );
 };
@@ -108,9 +107,9 @@ const PageLayout = ({ menu, breadcrumbs, children }) => {
         {menu}
       </Drawer>
       <AppBar className={classes.mobileToolbar} position="static" color="inherit">
-        <Toolbar style={{ color: grey[50], backgroundColor: indigo[500] }}>
+        <Toolbar style={{ color: theme.palette.primary.contrastText, backgroundColor: theme.palette.primary.main }}>
           <IconButton color="inherit" edge="start" sx={{ mr: 2 }} onClick={() => setOpenDrawer(true)}>
-            <MenuIcon style={{ color: grey[50] }} />
+            <MenuIcon style={{ color: theme.palette.primary.contrastText }} />
           </IconButton>
           <PageTitle breadcrumbs={breadcrumbs} />
         </Toolbar>

@@ -24,7 +24,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PendingIcon from '@mui/icons-material/Pending';
 
-import { grey, indigo } from '@mui/material/colors';
+import { blueGrey } from '@mui/material/colors';
 import { useTranslation } from './LocalizationProvider';
 import RemoveDialog from './RemoveDialog';
 import PositionValue from './PositionValue';
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     pointerEvents: 'auto',
     width: theme.dimensions.popupMaxWidth,
-    backgroundColor: grey[50],
+    backgroundColor: theme.palette.primary.contrastText,
   },
   media: {
     height: theme.dimensions.popupImageHeight,
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing(1, 1, 1, 3),
-    backgroundColor: indigo[500],
+    backgroundColor: theme.palette.primary.main,
   },
   content: {
     paddingTop: theme.spacing(1),
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
   actions: {
     justifyContent: 'space-between',
-    backgroundColor: indigo[100],
+    backgroundColor: blueGrey[100],
   },
   root: ({ desktopPadding }) => ({
     pointerEvents: 'none',

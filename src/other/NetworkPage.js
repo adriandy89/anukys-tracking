@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
-  Typography, Container, Paper, AppBar, Toolbar, IconButton, Table, TableHead, TableRow, TableCell, TableBody,
+  Typography, Container, Paper, AppBar, Toolbar, IconButton, Table, TableHead, TableRow, TableCell, TableBody, useTheme,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router-dom';
-import { grey, indigo } from '@mui/material/colors';
 import { useEffectAsync } from '../reactHelper';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NetworkPage = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const navigate = useNavigate();
 
   const { positionId } = useParams();
@@ -61,9 +61,9 @@ const NetworkPage = () => {
   return (
     <div className={classes.root}>
       <AppBar position="sticky" color="inherit">
-        <Toolbar style={{ backgroundColor: indigo[500], color: grey[50] }}>
+        <Toolbar style={{ backgroundColor: theme.palette.primary.main, color: theme.palette.primary.contrastText }}>
           <IconButton color="inherit" edge="start" sx={{ mr: 2 }} onClick={() => navigate(-1)}>
-            <ArrowBackIcon style={{ color: grey[50] }} />
+            <ArrowBackIcon style={{ color: theme.palette.primary.contrastText }} />
           </IconButton>
           <Typography variant="h6">
             {deviceName}

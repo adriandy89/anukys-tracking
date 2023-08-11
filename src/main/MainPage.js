@@ -6,7 +6,6 @@ import { makeStyles } from '@mui/styles';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
-import { indigo } from '@mui/material/colors';
 import DeviceList from './DeviceList';
 import BottomMenu from '../common/components/BottomMenu';
 import StatusCard from '../common/components/StatusCard';
@@ -60,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   contentList: {
     pointerEvents: 'auto',
     gridArea: '1 / 1',
-    zIndex: 4,
+    zIndex: 3,
   },
 }));
 
@@ -141,7 +140,7 @@ const MainPage = () => {
               />
             </div>
           )}
-          <Paper square className={classes.contentList} style={devicesOpen ? { border: `1px solid ${indigo[500]}` } : { visibility: 'hidden' }}>
+          <Paper square className={classes.contentList} style={devicesOpen ? { border: `1px solid ${theme.palette.primary.main}` } : { visibility: 'hidden' }}>
             <DeviceList devices={filteredDevices} />
           </Paper>
         </div>
