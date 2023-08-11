@@ -18,11 +18,11 @@ import {
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import CloseIcon from '@mui/icons-material/Close';
-import ReplayIcon from '@mui/icons-material/Replay';
 import PublishIcon from '@mui/icons-material/Publish';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PendingIcon from '@mui/icons-material/Pending';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 import { blueGrey } from '@mui/material/colors';
 import { useTranslation } from './LocalizationProvider';
@@ -231,10 +231,10 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
                   <PendingIcon />
                 </IconButton>
                 <IconButton
-                  onClick={() => navigate('/replay')}
-                  disabled={disableActions || !position}
+                  onClick={() => navigate(`/position/${position.id}`)}
+                  disabled={disableActions || deviceReadonly}
                 >
-                  <ReplayIcon />
+                  <InfoOutlinedIcon />
                 </IconButton>
                 <IconButton
                   onClick={() => navigate(`/settings/device/${deviceId}/command`)}
@@ -261,8 +261,8 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
         )}
       </div>
       {position && (
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-          <MenuItem onClick={() => navigate(`/position/${position.id}`)}><Typography color="secondary">{t('sharedShowDetails')}</Typography></MenuItem>
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)} elevation={12}>
+          <MenuItem onClick={() => navigate('/replay')}><Typography color="secondary">{t('reportReplay')}</Typography></MenuItem>
           <MenuItem onClick={handleGeofence}>{t('sharedCreateGeofence')}</MenuItem>
           <MenuItem component="a" target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${position.latitude}%2C${position.longitude}`}>{t('linkGoogleMaps')}</MenuItem>
           <MenuItem component="a" target="_blank" href={`http://maps.apple.com/?ll=${position.latitude},${position.longitude}`}>{t('linkAppleMaps')}</MenuItem>
