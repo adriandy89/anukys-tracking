@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -6,10 +7,14 @@ import {
 } from '@mui/material';
 
 import DescriptionIcon from '@mui/icons-material/Description';
+import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone';
 import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsTwoToneIcon from '@mui/icons-material/SettingsTwoTone';
 import MapIcon from '@mui/icons-material/Map';
+import MapTwoToneIcon from '@mui/icons-material/MapTwoTone';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 
 import { sessionActions } from '../../store';
 import { useTranslation } from './LocalizationProvider';
@@ -21,14 +26,14 @@ const BottomMenu = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const t = useTranslation();
+  // const t = useTranslation();
 
-  const readonly = useRestriction('readonly');
+  // const readonly = useRestriction('readonly');
   const disableReports = useRestriction('disableReports');
   const user = useSelector((state) => state.session.user);
   const socket = useSelector((state) => state.session.socket);
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
 
   const currentSelection = () => {
     if (location.pathname === `/settings/user/${user.id}`) {
@@ -43,13 +48,13 @@ const BottomMenu = () => {
     return null;
   };
 
-  const handleAccount = () => {
-    setAnchorEl(null);
-    navigate(`/settings/user/${user.id}`);
-  };
+  // const handleAccount = () => {
+  //   setAnchorEl(null);
+  //   navigate(`/settings/user/${user.id}`);
+  // };
 
   const handleLogout = async () => {
-    setAnchorEl(null);
+    // setAnchorEl(null);
 
     const notificationToken = window.localStorage.getItem('notificationToken');
     if (notificationToken && !user.readonly) {
@@ -89,7 +94,7 @@ const BottomMenu = () => {
         navigate('/settings/preferences');
         break;
       case 'account':
-        setAnchorEl(event.currentTarget);
+        // setAnchorEl(event.currentTarget);
         break;
       case 'logout':
         handleLogout();
@@ -103,53 +108,53 @@ const BottomMenu = () => {
     <Paper square elevation={3}>
       <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels style={{ backgroundColor: theme.palette.primary.main }}>
         <BottomNavigationAction
-          label={t('mapTitle')}
+          // label={t('mapTitle')}
           style={{ color: theme.palette.primary.contrastText }}
           icon={(
             <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
-              <MapIcon />
+              <MapTwoToneIcon fontSize="large" />
             </Badge>
           )}
           value="map"
         />
         {!disableReports && (
           <BottomNavigationAction
-            label={t('reportTitle')}
-            icon={<DescriptionIcon />}
+            // label={t('reportTitle')}
+            icon={<DescriptionTwoToneIcon fontSize="large" />}
             value="reports"
             style={{ color: theme.palette.primary.contrastText }}
           />
         )}
         <BottomNavigationAction
-          label={t('settingsTitle')}
-          icon={<SettingsIcon />}
+          // label={t('settingsTitle')}
+          icon={<SettingsTwoToneIcon fontSize="large" />}
           value="settings"
           style={{ color: theme.palette.primary.contrastText }}
         />
-        {readonly ? (
-          <BottomNavigationAction
-            label={t('loginLogout')}
-            icon={<ExitToAppIcon />}
-            value="logout"
-            style={{ color: theme.palette.primary.contrastText }}
-          />
-        ) : (
-          <BottomNavigationAction
-            label={t('settingsUser')}
-            icon={<PersonIcon />}
-            value="account"
-            style={{ color: theme.palette.primary.contrastText }}
-          />
-        )}
+        {/* {readonly ? ( */}
+        <BottomNavigationAction
+            // label={t('loginLogout')}
+          icon={<LogoutTwoToneIcon fontSize="large" />}
+          value="logout"
+          style={{ color: theme.palette.primary.contrastText }}
+        />
+        {/* ) : ( */}
+        {/* <BottomNavigationAction
+            // label={t('settingsUser')}
+          icon={<PersonIcon fontSize="large" />}
+          value="account"
+          style={{ color: theme.palette.primary.contrastText }}
+        /> */}
+        {/* )} */}
       </BottomNavigation>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+      {/* <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
         <MenuItem onClick={handleAccount}>
           <Typography color="textPrimary">{t('settingsUser')}</Typography>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <Typography color="error">{t('loginLogout')}</Typography>
         </MenuItem>
-      </Menu>
+      </Menu> */}
     </Paper>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +8,9 @@ import {
 import { makeStyles, useTheme } from '@mui/styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocationOffIcon from '@mui/icons-material/LocationOff';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import AddIcon from '@mui/icons-material/Add';
+import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
 import TuneIcon from '@mui/icons-material/Tune';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import { useDeviceReadonly } from '../common/util/permissions';
@@ -64,7 +67,7 @@ const MainToolbar = ({
   return (
     <Toolbar ref={toolbarRef} className={classes.toolbar}>
       <IconButton edge="start" onClick={() => setDevicesOpen(!devicesOpen)} className={classes.iconButton}>
-        {devicesOpen ? <LocationOnIcon /> : <LocationOffIcon />}
+        {devicesOpen ? <UnfoldLessIcon fontSize="medium" /> : <UnfoldMoreIcon fontSize="medium" />}
       </IconButton>
       <OutlinedInput
         ref={inputRef}
@@ -77,7 +80,7 @@ const MainToolbar = ({
           <InputAdornment position="end">
             <IconButton size="small" edge="end" onClick={() => setFilterAnchorEl(inputRef.current)}>
               <Badge color="info" variant="dot" invisible={!filter.statuses.length && !filter.groups.length}>
-                <TuneIcon fontSize="small" />
+                <TuneIcon fontSize="medium" />
               </Badge>
             </IconButton>
           </InputAdornment>
@@ -170,11 +173,11 @@ const MainToolbar = ({
           </FormGroup>
         </div>
       </Popover>
-      <IconButton edge="end" onClick={() => navigate('/settings/device')} disabled={deviceReadonly} className={classes.iconButton}>
+      {/* <IconButton edge="end" onClick={() => navigate('/settings/device')} disabled={deviceReadonly} className={classes.iconButton}>
         <Tooltip open={!deviceReadonly && Object.keys(devices).length === 0} title={t('deviceRegisterFirst')} arrow>
           <AddIcon />
         </Tooltip>
-      </IconButton>
+      </IconButton> */}
     </Toolbar>
   );
 };
